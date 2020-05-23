@@ -1,2 +1,2 @@
-export * from './Topbar'
-export { default } from './Topbar'
+export { default } from './TopBar'
+export * from './TopBar'

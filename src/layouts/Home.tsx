@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
 
 import Card from '../components/Card'
+import TopBar from '../components/TopBar'
 import Logo from '../components/Logo'
-import TopBar from '../components/Topbar'
+
 import { ThemeContext } from '../App'
 
 export interface Props {}
