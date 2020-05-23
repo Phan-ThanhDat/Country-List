@@ -3,16 +3,17 @@ import clsx from 'clsx'
 
 import styles from './Topbar.module.css'
 
-export interface ITopBarProps extends AllHTMLAttributes<HTMLDivElement> {
+export interface ITopbarProps extends AllHTMLAttributes<HTMLDivElement> {
   children: ReactNode
   className?: string
 }
 
-const TopBar: React.FC<ITopBarProps> = ({
-  className,
-  children,
-}: ITopBarProps) => {
-  return <div className={clsx(styles.topbar, className)}>{children}</div>
+const Topbar = ({ children, className, ...others }: ITopbarProps) => {
+  return (
+    <div className={clsx(styles.topbar, className)} {...others}>
+      {children}
+    </div>
+  )
 }
 
-export default TopBar
+export default Topbar

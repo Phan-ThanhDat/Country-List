@@ -48,6 +48,7 @@
   },
   "devDependencies": {
     "@types/react": "^16.9.35",
+    "case-sensitive-paths-webpack-plugin": "^2.3.0",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.7"
   },

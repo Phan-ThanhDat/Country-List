@@ -8,7 +8,7 @@ export interface ICardProps extends AllHTMLAttributes<HTMLDivElement> {
   className?: string
 }
 
-export const Card: React.FC<ICardProps> = ({
+const Card: React.FC<ICardProps> = ({
   children,
   className,
   ...others
@@ -19,3 +19,5 @@ export const Card: React.FC<ICardProps> = ({
     </div>
   )
 }
+
+export default Card
