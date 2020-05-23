@@ -13,25 +13,25 @@
 
 .h2 {
     font-size: 2.25rem;
-    font-weight: var(--font-weight-semibold);
+    font-weight: 600;
     line-height: 1.28;
 }
 
 .h3 {
     font-size: 1.5rem;
-    font-weight: var(--font-weight-bold);
+    font-weight: 700;
     line-height: 1.25;
 }
 
 .h4 {
     font-size: 1.125rem;
-    font-weight: var(--font-weight-semibold);
+    font-weight: 600;
     line-height: 1.33;
 }
 
 .h5 {
     font-size: 0.875rem;
-    font-weight: var(--font-weight-bold);
+    font-weight: 700;
     line-height: 1.43;
 }
 
@@ -62,27 +62,27 @@
 }
 
 .black {
-    color: var(--black);
+    color: #151c23;
 }
 
 .greyDark {
-    color: var(--grey-dark);
+    color: #505355;
 }
 
 .greyMedium {
-    color: var(--grey-medium);
+    color: #7d8489;
 }
 
 .white {
-    color: var(--white);
+    color: #fff;
 }
 
 .blue {
-    color: var(--blue-default);
+    color: #33ace5;
 }
 
 .red {
-    color: var(--red-negative);
+    color: #c32d2d;
 }
 
 /* Align */
