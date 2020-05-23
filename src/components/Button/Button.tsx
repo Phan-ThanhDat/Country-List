@@ -12,7 +12,7 @@ export interface IButtonProps
   children: ReactNode
   /** Class name append to root button */
   className?: string
-  variant?: string
+  variant?: ButtonVariants
   display?: 'big'
   href?: string
 }

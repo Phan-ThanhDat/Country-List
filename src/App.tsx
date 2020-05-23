@@ -1,12 +1,12 @@
 import React from 'react'
 
 import Routes from './Routes'
-import Button from './components/Button'
+import Button, { ButtonVariants } from './components/Button'
 
 export default function App() {
   return (
     <>
-      <Button variant="icon">Secondary</Button>
+      <Button variant={ButtonVariants.Secondary}>Secondary</Button>
       <Routes />
     </>
   )
