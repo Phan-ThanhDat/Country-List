@@ -1,9 +1,10 @@
 import React from 'react'
 
-import Routes from './Routes'
 import Home from './layouts/Home'
 import { ThemeContext } from '../src/contexts/theme.context'
 import { useTheme } from './hooks/useTheme'
+import DrawerNav from './pages/DrawerNav'
+import './App.css'
 
 // const themes = {
 //   light: {
@@ -24,7 +25,7 @@ export default function App() {
   return (
     <ThemeContext.Provider value={theme}>
       <Home />
-      <Routes />
+      <DrawerNav />
     </ThemeContext.Provider>
   )
 }
