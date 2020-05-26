@@ -1,4 +1,4 @@
-import { CountriesActions, CountriesState } from '../../types'
+import { CountriesActions, CountriesState, Countries } from '../../types'
 
 export const initialState: CountriesState = {
   inCart: [],
@@ -15,10 +15,10 @@ export default function (
   case 'FETCH_COUNTRIES_REQUESTED':
     console.log(111)
     return { ...state, ...initialState }
-
   case 'FETCH_COUNTRIES_SUCCEEDED': {
     const countryList = JSON.parse(JSON.stringify(action.payload))
-    return { ...state, countries: [...countryList.data], loading: false }
+    const data: Countries[] = countryList.data
+    return { ...state, countries: [...data], loading: false }
   }
   default:
     return state
