@@ -13,6 +13,11 @@ const initState: AppState = {
   ui: {
     dialogOpen: {},
   },
+  list: {
+    inCart: [],
+    countries: [],
+    loading: true,
+  },
 }
 
 export default function makeStore(initialState = initState) {
