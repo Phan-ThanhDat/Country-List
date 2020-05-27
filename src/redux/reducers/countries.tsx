@@ -13,8 +13,7 @@ export default function (
   console.log('action', action)
   switch (action.type) {
   case 'FETCH_COUNTRIES_REQUESTED':
-    console.log(111)
-    return { ...state, ...initialState }
+    return { ...state, ...initialState, loading: true }
   case 'FETCH_COUNTRIES_SUCCEEDED': {
     const countryList = JSON.parse(JSON.stringify(action.payload))
     const data: Countries[] = countryList.data

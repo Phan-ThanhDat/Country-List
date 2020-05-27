@@ -1,3 +1,5 @@
+import { nativeName } from './pages/Country/Country'
+
 // Action types
 export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
@@ -43,7 +45,7 @@ export type Countries = {
   name: string
   flag: string
   population: number
-  languages: { name: string }[]
+  languages: nativeName[]
   region: string
 }
 

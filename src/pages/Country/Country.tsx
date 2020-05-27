@@ -5,26 +5,45 @@ import { CardMedia, Typography } from '@material-ui/core'
 import useStyles from './Country.module'
 import Button from '../../components/Button'
 
-export interface ICountryProps {}
+export type nativeName = { nativeName: string }
 
-const Country: React.FC<ICountryProps> = () => {
+export interface ICountryProps {
+  name: string
+  flag: string
+  languague: nativeName[]
+  region: string
+}
+
+const Country: React.FC<ICountryProps> = ({
+  name,
+  flag,
+  region,
+  languague,
+}) => {
   const classes = useStyles()
 
   return (
     <Card className={classes.wrapper}>
       <Typography className={classes.name} component="a">
-        Finland
+        {name}
       </Typography>
       <CardMedia
         component="img"
         className={classes.media}
-        image="https://taimienphi.vn/tmp/cf/aut/anh-dep-2.jpg"
-        title="Contemplative Reptile"
+        image={flag}
+        title={name}
       />
       <Typography className={classes.name} component="a">
-        Danmark, Sweden, Norway
+        {languague.map((l) => {
+          const lastIndex = languague[languague.length - 1]
+          if (l !== lastIndex) return l.nativeName + ' - '
+          else return l.nativeName
+        })}
       </Typography>
-      <Button className={classes.button}> Remove</Button>
+      <Typography className={classes.name} component="a">
+        {region}
+      </Typography>
+      <Button className={classes.button}> Add</Button>
     </Card>
   )
 }

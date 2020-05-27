@@ -11,8 +11,8 @@ const useStyles = makeStyles((theme) => {
       alignItems: 'center',
     },
     media: {
-      width: 240,
-      height: 120,
+      width: 160,
+      height: 64,
       paddingLeft: '32px',
       paddingRight: '32px',
       margin: 0,
@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => {
       cursor: 'pointer',
       paddingLeft: '32px',
       paddingRight: '32px',
+      width: '10rem',
     },
     button: {
       // marginLeft: 'auto',

@@ -18,6 +18,11 @@ import ListItemText from '@material-ui/core/ListItemText'
 import InboxIcon from '@material-ui/icons/MoveToInbox'
 import MailIcon from '@material-ui/icons/Mail'
 import Countries from '../Countries'
+import Search from '../Search'
+import { useSelector } from 'react-redux'
+import useDispatchCountryLis from '../../hooks/useDispatchCountryList'
+import { AppState, Countries as CountryType } from '../../types'
+import Loading from '../../components/Loading'
 
 const drawerWidth = 240
 
@@ -31,6 +36,29 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+  },
+  TBar: {
+    maxWidth: '1280px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: '998px',
+  },
+  wrapperSearch: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    marginLeft: 'auto',
+    color: 'white',
+  },
+  input: {
+    marginLeft: theme.spacing(1),
+    flex: 1,
+    color: 'white',
+  },
+  iconButton: {
+    padding: 10,
+  },
+  searchIcon: {
+    color: 'white',
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -67,7 +95,11 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: -drawerWidth,
+    maxWidth: '1280px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: '998px',
+    marginTop: '56px',
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -78,10 +110,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function PersistentDrawerLeft() {
+interface IPersistentDrawerLeftProps {
+  handleSearchChangeProp?: (seachChangeTerm: any) => void
+}
+
+const PersistentDrawerLeft: React.FC<IPersistentDrawerLeftProps> = ({
+  handleSearchChangeProp,
+}: IPersistentDrawerLeftProps) => {
   const classes = useStyles()
   const theme = useTheme()
   const [open, setOpen] = React.useState(false)
+  const typingRefTimeoutSearch = React.useRef<number | null>(0)
 
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -90,7 +129,26 @@ export default function PersistentDrawerLeft() {
   const handleDrawerClose = () => {
     setOpen(false)
   }
-
+  const [searchTerm, setSearchTerm] = React.useState<string>('')
+  const [list, setList] = React.useState<CountryType[]>([])
+  const [loading] = useDispatchCountryLis('/all')
+  const contryList = useSelector((state: AppState) => state.list.countries)
+  console.log(contryList)
+  const handleSearchChange = (searchTerm: string) => {
+    setSearchTerm(searchTerm)
+    const filterCountryListBySearchTerm: CountryType[] = contryList.filter(
+      (c) => {
+        console.log(c.name.toUpperCase())
+        return c.name.toLowerCase().includes(searchTerm.toLowerCase())
+      }
+    )
+    if (typingRefTimeoutSearch.current) {
+      clearTimeout(typingRefTimeoutSearch.current)
+    }
+    typingRefTimeoutSearch.current = window.setTimeout(() => {
+      setList(filterCountryListBySearchTerm)
+    }, 100)
+  }
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -100,7 +158,7 @@ export default function PersistentDrawerLeft() {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar>
+        <Toolbar className={clsx(classes.TBar)}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -111,8 +169,9 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            Integrify
           </Typography>
+          <Search handleSearchChangeProp={handleSearchChange} />
         </Toolbar>
       </AppBar>
       <Drawer
@@ -161,8 +220,14 @@ export default function PersistentDrawerLeft() {
           [classes.contentShift]: open,
         })}
       >
-        <Countries />
+        {!loading ? (
+          <Countries list={list} searchTerm={searchTerm} />
+        ) : (
+          <Loading />
+        )}
       </main>
     </div>
   )
 }
+
+export default PersistentDrawerLeft
