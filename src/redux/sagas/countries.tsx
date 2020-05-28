@@ -1,7 +1,11 @@
-import { takeEvery, call, put } from 'redux-saga/effects'
+import { takeEvery, call, put, all, fork, delay } from 'redux-saga/effects'
 
 import fetchApi from '../utils/apis'
-import { FETCH_COUNTRIES_REQUESTED } from '../../types'
+import {
+  FETCH_COUNTRIES_REQUESTED,
+  ADD_COUNTRY_REQUEST,
+  ADD_COUNTRY_SUCCEED,
+} from '../../types'
 
 function* callApi(action: any) {
   if (action.payload) {
@@ -35,4 +39,17 @@ function* callApi(action: any) {
   }
 }
 
-export default [takeEvery(FETCH_COUNTRIES_REQUESTED, callApi)]
+function* addCountryToCart() {
+  // yield take(ADD_COUNTRY_REQUEST)
+  yield delay(1000)
+  yield put({ type: ADD_COUNTRY_SUCCEED })
+}
+
+function* watchCountries() {
+  yield takeEvery(FETCH_COUNTRIES_REQUESTED, callApi)
+  yield takeEvery(ADD_COUNTRY_REQUEST, addCountryToCart)
+}
+
+export default function* companiesSagas() {
+  yield all([fork(watchCountries)])
+}

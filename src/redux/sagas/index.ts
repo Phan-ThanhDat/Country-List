@@ -1,9 +1,10 @@
-import { all } from 'redux-saga/effects'
+import { all, fork } from 'redux-saga/effects'
 
 import productSagas from './product'
 import uiSagas from './ui'
-import countries from './countries'
+import companiesSagas from './countries'
 
 export default function* rootSaga() {
-  yield all([...productSagas, ...uiSagas, ...countries])
+  yield all([fork(companiesSagas)])
+  yield all([...productSagas, ...uiSagas])
 }

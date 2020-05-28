@@ -1,4 +1,14 @@
-import { CountriesActions, CountriesState, Countries } from '../../types'
+import {
+  CountriesActions,
+  CountriesState,
+  Countries,
+  FETCH_COUNTRIES_REQUESTED,
+  FETCH_COUNTRIES_SUCCEEDED,
+  ADD_COUNTRY_REQUEST,
+  Countries as CountryType,
+  ADD_COUNTRY_SUCCEED,
+  LOAD_IN_CART,
+} from '../../types'
 
 export const initialState: CountriesState = {
   inCart: [],
@@ -12,13 +22,54 @@ export default function (
 ): CountriesState {
   console.log('action', action)
   switch (action.type) {
-  case 'FETCH_COUNTRIES_REQUESTED':
+  case FETCH_COUNTRIES_REQUESTED:
     return { ...state, ...initialState, loading: true }
-  case 'FETCH_COUNTRIES_SUCCEEDED': {
+  case FETCH_COUNTRIES_SUCCEEDED: {
     const countryList = JSON.parse(JSON.stringify(action.payload))
     const data: Countries[] = countryList.data
     return { ...state, countries: [...data], loading: false }
   }
+  case ADD_COUNTRY_REQUEST:
+    const data: CountryType[] = [action.payload.country]
+    let retrievedObject: any = localStorage.getItem('inCart')
+    if (typeof retrievedObject === 'string') {
+      retrievedObject = JSON.parse(retrievedObject)
+    }
+
+    const inCart = [...retrievedObject, ...data]
+    console.log(inCart)
+    localStorage.setItem('inCart', JSON.stringify(inCart))
+    return {
+      ...state,
+      inCart: [...inCart],
+      loading: true,
+    }
+  case ADD_COUNTRY_SUCCEED:
+    return { ...state, loading: false }
+  case LOAD_IN_CART:
+    if (localStorage.getItem('inCart') !== null) {
+      // Retrieve the object from storage
+      let retrievedObject: any = localStorage.getItem('inCart')
+      if (typeof retrievedObject === 'string') {
+        retrievedObject = JSON.parse(retrievedObject)
+      }
+      console.log('retrievedObject: ', retrievedObject)
+
+      console.log('state', state)
+      const inCart = [...retrievedObject]
+      console.log(inCart)
+      localStorage.setItem('inCart', JSON.stringify(inCart))
+      return {
+        ...state,
+        inCart: [...inCart],
+      }
+    } else {
+      const inCart = [...state.inCart]
+      localStorage.setItem('inCart', JSON.stringify(inCart))
+      return {
+        ...state,
+      }
+    }
   default:
     return state
   }

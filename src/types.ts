@@ -7,6 +7,10 @@ export const TOGGLE_DIALOG = 'TOGGLE_DIALOG'
 export const FETCH_COUNTRIES_REQUESTED = 'FETCH_COUNTRIES_REQUESTED'
 export const FETCH_COUNTRIES_FAILED = 'FETCH_COUNTRIES_FAILED'
 export const FETCH_COUNTRIES_SUCCEEDED = 'FETCH_COUNTRIES_SUCCEEDED'
+export const ADD_COUNTRY_REQUEST = 'ADD_COUNTRY_REQUEST'
+export const ADD_COUNTRY_SUCCEED = 'ADD_COUNTRY_SUCCEED'
+export const LOAD_IN_CART = 'LOAD_IN_CART'
+
 // Enum
 export enum DialogType {
   SignIn = 'signIn',
@@ -67,10 +71,30 @@ export type FetchCountriesFailedAction = {
   }
 }
 
+export type AddCountryRequest = {
+  type: typeof ADD_COUNTRY_REQUEST
+  payload: {
+    country: Countries
+  }
+}
+export type AddCountrySuceeded = {
+  type: typeof ADD_COUNTRY_SUCCEED
+  payload: {
+    country: Countries
+  }
+}
+
+export type LoadingInCart = {
+  type: typeof LOAD_IN_CART
+}
+
 export type CountriesActions =
   | FetchCountriesRequestedAction
   | FetchCountriesSucceededAction
   | FetchCountriesFailedAction
+  | AddCountryRequest
+  | AddCountrySuceeded
+  | LoadingInCart
 
 export type UiActions = ToggleDialogAction
 
@@ -89,7 +113,7 @@ export type UiState = {
 }
 
 export type CountriesState = {
-  inCart: []
+  inCart: Countries[]
   countries: Countries[]
   loading: boolean
 }

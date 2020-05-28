@@ -23,6 +23,7 @@ import { useSelector } from 'react-redux'
 import useDispatchCountryLis from '../../hooks/useDispatchCountryList'
 import { AppState, Countries as CountryType } from '../../types'
 import Loading from '../../components/Loading'
+import Cart from '../../components/Cart'
 
 const drawerWidth = 240
 
@@ -99,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 'auto',
     marginRight: 'auto',
     width: '998px',
-    marginTop: '56px',
+    marginTop: '64px',
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -110,17 +111,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-interface IPersistentDrawerLeftProps {
-  handleSearchChangeProp?: (seachChangeTerm: any) => void
-}
+interface IPersistentDrawerLeftProps {}
 
-const PersistentDrawerLeft: React.FC<IPersistentDrawerLeftProps> = ({
-  handleSearchChangeProp,
-}: IPersistentDrawerLeftProps) => {
+const PersistentDrawerLeft: React.FC<IPersistentDrawerLeftProps> = ({}: IPersistentDrawerLeftProps) => {
   const classes = useStyles()
   const theme = useTheme()
   const [open, setOpen] = React.useState(false)
-  const typingRefTimeoutSearch = React.useRef<number | null>(0)
 
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -133,7 +129,7 @@ const PersistentDrawerLeft: React.FC<IPersistentDrawerLeftProps> = ({
   const [list, setList] = React.useState<CountryType[]>([])
   const [loading] = useDispatchCountryLis('/all')
   const contryList = useSelector((state: AppState) => state.list.countries)
-  console.log(contryList)
+
   const handleSearchChange = (searchTerm: string) => {
     setSearchTerm(searchTerm)
     const filterCountryListBySearchTerm: CountryType[] = contryList.filter(
@@ -142,13 +138,9 @@ const PersistentDrawerLeft: React.FC<IPersistentDrawerLeftProps> = ({
         return c.name.toLowerCase().includes(searchTerm.toLowerCase())
       }
     )
-    if (typingRefTimeoutSearch.current) {
-      clearTimeout(typingRefTimeoutSearch.current)
-    }
-    typingRefTimeoutSearch.current = window.setTimeout(() => {
-      setList(filterCountryListBySearchTerm)
-    }, 100)
+    setList(filterCountryListBySearchTerm)
   }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -172,6 +164,7 @@ const PersistentDrawerLeft: React.FC<IPersistentDrawerLeftProps> = ({
             Integrify
           </Typography>
           <Search handleSearchChangeProp={handleSearchChange} />
+          <Cart />
         </Toolbar>
       </AppBar>
       <Drawer

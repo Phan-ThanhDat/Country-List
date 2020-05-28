@@ -25,6 +25,7 @@ const Countries: React.FC<ICountriesProps> = ({
     list.length > 0 &&
     list.map((c: CountryType) => (
       <Country
+        country={c}
         key={c.name}
         name={c.name}
         flag={c.flag}
