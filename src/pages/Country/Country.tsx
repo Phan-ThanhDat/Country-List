@@ -17,6 +17,7 @@ export interface ICountryProps {
   languague: nativeName[]
   region: string
   country: CountryType
+  className?: string
 }
 
 const Country: React.FC<ICountryProps> = ({
@@ -25,6 +26,7 @@ const Country: React.FC<ICountryProps> = ({
   region,
   languague,
   country,
+  className,
 }) => {
   const classes = useStyles()
   const dispatchAddCountry = useDispatch()

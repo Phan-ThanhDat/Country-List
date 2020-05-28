@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     flexShrink: 0,
   },
   drawerPaper: {
-    width: drawerWidth * 2,
+    width: drawerWidth * 3.5,
   },
   iconClose: {
     color: 'black',
@@ -58,6 +58,7 @@ const Cart: React.FC<ICartProps> = () => {
 
   const handleDrawerOpen = () => {
     setOpen(true)
+    dispatchInCart(loadingInCartDAta())
   }
   const handleDrawerClose = () => {
     setOpen(false)
