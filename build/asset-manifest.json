@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.51dd085d.chunk.css",
-    "main.js": "/static/js/main.d8a1d4d5.chunk.js",
-    "main.js.map": "/static/js/main.d8a1d4d5.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.17f0c553.js",
-    "runtime-main.js.map": "/static/js/runtime-main.17f0c553.js.map",
-    "static/js/2.8ba9c451.chunk.js": "/static/js/2.8ba9c451.chunk.js",
-    "static/js/2.8ba9c451.chunk.js.map": "/static/js/2.8ba9c451.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.f4be8ba97fb5ee5b013e13842beefd80.js": "/precache-manifest.f4be8ba97fb5ee5b013e13842beefd80.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.51dd085d.chunk.css.map": "/static/css/main.51dd085d.chunk.css.map",
-    "static/js/2.8ba9c451.chunk.js.LICENSE.txt": "/static/js/2.8ba9c451.chunk.js.LICENSE.txt"
+    "main.css": "/full-stack-4-typescript-redux-template/static/css/main.51dd085d.chunk.css",
+    "main.js": "/full-stack-4-typescript-redux-template/static/js/main.aaca2073.chunk.js",
+    "main.js.map": "/full-stack-4-typescript-redux-template/static/js/main.aaca2073.chunk.js.map",
+    "runtime-main.js": "/full-stack-4-typescript-redux-template/static/js/runtime-main.c0271653.js",
+    "runtime-main.js.map": "/full-stack-4-typescript-redux-template/static/js/runtime-main.c0271653.js.map",
+    "static/js/2.8ba9c451.chunk.js": "/full-stack-4-typescript-redux-template/static/js/2.8ba9c451.chunk.js",
+    "static/js/2.8ba9c451.chunk.js.map": "/full-stack-4-typescript-redux-template/static/js/2.8ba9c451.chunk.js.map",
+    "index.html": "/full-stack-4-typescript-redux-template/index.html",
+    "precache-manifest.c8a80e340789a13e37ea247a7ebb7535.js": "/full-stack-4-typescript-redux-template/precache-manifest.c8a80e340789a13e37ea247a7ebb7535.js",
+    "service-worker.js": "/full-stack-4-typescript-redux-template/service-worker.js",
+    "static/css/main.51dd085d.chunk.css.map": "/full-stack-4-typescript-redux-template/static/css/main.51dd085d.chunk.css.map",
+    "static/js/2.8ba9c451.chunk.js.LICENSE.txt": "/full-stack-4-typescript-redux-template/static/js/2.8ba9c451.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.17f0c553.js",
+    "static/js/runtime-main.c0271653.js",
     "static/js/2.8ba9c451.chunk.js",
     "static/css/main.51dd085d.chunk.css",
-    "static/js/main.d8a1d4d5.chunk.js"
+    "static/js/main.aaca2073.chunk.js"
   ]
 }
