@@ -33,7 +33,6 @@ const Country: React.FC<ICountryProps> = ({
   const dispatchAddCountry = useDispatch()
 
   const handleAddBtn = () => {
-    console.log('addd suceess')
     dispatchAddCountry(addCountryToCartRequest({ country }))
   }
   const inCart: CountryType[] = useSelector(

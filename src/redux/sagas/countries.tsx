@@ -9,7 +9,6 @@ import {
 } from '../../types'
 
 function* callApi(action: FetchCountriesRequestedAction) {
-  console.log('action-> ', action.payload)
   if (action.payload) {
     const {
       successType,

@@ -20,7 +20,6 @@ export default function (
   state = initialState,
   action: CountriesActions
 ): CountriesState {
-  console.log('action', action)
   switch (action.type) {
   case FETCH_COUNTRIES_REQUESTED:
     return { ...state, loading: true }
@@ -37,7 +36,6 @@ export default function (
     }
 
     const inCart = [...retrievedObject, ...data]
-    console.log(inCart)
     localStorage.setItem('inCart', JSON.stringify(inCart))
     return {
       ...state,
@@ -53,11 +51,8 @@ export default function (
       if (typeof retrievedObject === 'string') {
         retrievedObject = JSON.parse(retrievedObject)
       }
-      console.log('retrievedObject: ', retrievedObject)
 
-      console.log('state', state)
       const inCart = [...retrievedObject]
-      console.log(inCart)
       localStorage.setItem('inCart', JSON.stringify(inCart))
       return {
         ...state,

@@ -46,14 +46,12 @@ const Search: React.FC<ISearchProps> = ({
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { value } = e.target && e.target
-    console.log(value)
     setQuery(value)
     // handleSearchChangeProp(value)
   }
 
   const onSubmit = (e: any) => {
     e.preventDefault()
-    console.log(e)
     if (query !== '') {
       handleSearchChangeProp(query)
     }

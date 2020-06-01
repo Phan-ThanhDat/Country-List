@@ -150,9 +150,8 @@ const PersistentDrawerLeft: React.FC<IPersistentDrawerLeftProps> = () => {
   React.useEffect(() => {
     if (isNullOrWhitespace(searchTerm)) {
       setList(contryList)
-      console.log(list)
     }
-  }, [contryList, list, searchTerm])
+  }, [contryList, searchTerm])
 
   return (
     <div className={classes.root}>
