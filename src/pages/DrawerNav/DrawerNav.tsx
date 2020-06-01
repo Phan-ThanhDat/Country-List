@@ -147,7 +147,7 @@ const PersistentDrawerLeft: React.FC<IPersistentDrawerLeftProps> = () => {
     return input.replace(/\s/g, '').length < 1
   }
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (isNullOrWhitespace(searchTerm)) {
       setList(contryList)
       console.log(list)

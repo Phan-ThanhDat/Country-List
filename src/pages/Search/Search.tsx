@@ -32,18 +32,15 @@ const Search: React.FC<ISearchProps> = ({
 }: ISearchProps) => {
   const classes = useStyles()
   const [query, setQuery] = React.useState<string>('')
-  const [timer, setTimer] = React.useState<NodeJS.Timer | undefined>()
 
   React.useEffect(() => {
-    if (timer) {
-      clearTimeout(timer)
+    const timeout = setTimeout(() => {
+      handleSearchChangeProp(query)
+    }, 300)
+    return () => {
+      clearTimeout(timeout)
     }
-    setTimer(
-      setTimeout(() => {
-        handleSearchChangeProp(query)
-      }, 300)
-    )
-  }, [handleSearchChangeProp, query, timer])
+  }, [handleSearchChangeProp, query])
 
   const handleSerchChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
