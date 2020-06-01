@@ -5,9 +5,11 @@ import {
   FETCH_COUNTRIES_REQUESTED,
   ADD_COUNTRY_REQUEST,
   ADD_COUNTRY_SUCCEED,
+  FetchCountriesRequestedAction,
 } from '../../types'
 
-function* callApi(action: any) {
+function* callApi(action: FetchCountriesRequestedAction) {
+  console.log('action-> ', action.payload)
   if (action.payload) {
     const {
       successType,

@@ -55,12 +55,22 @@ export type Countries = {
 
 export type FetchCountriesRequestedAction = {
   type: typeof FETCH_COUNTRIES_REQUESTED
+  payload: {
+    uri: string
+    params: {
+      uri: string
+    }
+    beforeCallType: string
+    successType: string
+    afterSuccess: (response: any) => void
+    afterError: (error: any) => void
+  }
 }
 
 export type FetchCountriesSucceededAction = {
   type: typeof FETCH_COUNTRIES_SUCCEEDED
   payload: {
-    countries: []
+    countries: Countries[]
   }
 }
 

@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 const useDispatchCountryLis = (uri: string = '/all') => {
   const [loading, setLoading] = useState(true)
 
-  const dispatch = useDispatch()
+  let dispatch = useDispatch()
   useEffect(() => {
     dispatch(
       getCountriesRequest(

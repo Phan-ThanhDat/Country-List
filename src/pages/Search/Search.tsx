@@ -3,11 +3,10 @@ import Card from '../../components/Card'
 import { InputBase, IconButton } from '@material-ui/core'
 import SearchIcon from '../../components/Icons/Search'
 import { makeStyles } from '@material-ui/core/styles'
+
 export interface ISearchProps {
   handleSearchChangeProp: (seachChangeTerm: any) => void
 }
-
-// const typingTimeRef = useRef<number | null>()
 
 const useStyles = makeStyles((theme) => ({
   wrapperSearch: {
@@ -32,19 +31,34 @@ const Search: React.FC<ISearchProps> = ({
   handleSearchChangeProp,
 }: ISearchProps) => {
   const classes = useStyles()
+  const [query, setQuery] = React.useState<string>('')
+  const [timer, setTimer] = React.useState<NodeJS.Timer | undefined>()
+
+  React.useEffect(() => {
+    if (timer) {
+      clearTimeout(timer)
+    }
+    setTimer(
+      setTimeout(() => {
+        handleSearchChangeProp(query)
+      }, 300)
+    )
+  }, [handleSearchChangeProp, query, timer])
 
   const handleSerchChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { value } = e.target
-    handleSearchChangeProp(value)
+    const { value } = e.target && e.target
+    console.log(value)
+    setQuery(value)
+    // handleSearchChangeProp(value)
   }
 
   const onSubmit = (e: any) => {
     e.preventDefault()
-    const { value } = e.target
-    if (value !== '') {
-      console.log('testingggg')
+    console.log(e)
+    if (query !== '') {
+      handleSearchChangeProp(query)
     }
   }
 

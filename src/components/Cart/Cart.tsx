@@ -51,9 +51,6 @@ const Cart: React.FC<ICartProps> = () => {
   const theme = useTheme()
   const dispatchInCart = useDispatch()
 
-  React.useEffect(() => {
-    dispatchInCart(loadingInCartDAta())
-  }, [dispatchInCart])
   const inCart = useSelector((state: AppState) => state.list.inCart)
 
   const handleDrawerOpen = () => {
@@ -97,6 +94,7 @@ const Cart: React.FC<ICartProps> = () => {
           {inCart.length > 0 &&
             inCart.map((c: CountryType) => (
               <Country
+                hasAddBtn={false}
                 country={c}
                 key={c.name}
                 name={c.name}

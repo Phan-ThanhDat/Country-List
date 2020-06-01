@@ -38,7 +38,7 @@ const Home: React.FC<Props> = () => {
   return (
     <Card>
       <TopBar>
-        <Button onClick={() => handleChangeTheme()}>Change Theme</Button>
+        <Button onClick={handleChangeTheme}>Change Theme</Button>
         <Logo company="Integrify" />
       </TopBar>
     </Card>

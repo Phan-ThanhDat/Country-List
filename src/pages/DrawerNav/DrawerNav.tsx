@@ -113,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
 
 interface IPersistentDrawerLeftProps {}
 
-const PersistentDrawerLeft: React.FC<IPersistentDrawerLeftProps> = ({}: IPersistentDrawerLeftProps) => {
+const PersistentDrawerLeft: React.FC<IPersistentDrawerLeftProps> = () => {
   const classes = useStyles()
   const theme = useTheme()
   const [open, setOpen] = React.useState(false)
@@ -128,18 +128,31 @@ const PersistentDrawerLeft: React.FC<IPersistentDrawerLeftProps> = ({}: IPersist
   const [searchTerm, setSearchTerm] = React.useState<string>('')
   const [list, setList] = React.useState<CountryType[]>([])
   const [loading] = useDispatchCountryLis('/all')
-  const contryList = useSelector((state: AppState) => state.list.countries)
+  const contryList: CountryType[] = useSelector(
+    (state: AppState) => state.list.countries
+  )
 
   const handleSearchChange = (searchTerm: string) => {
     setSearchTerm(searchTerm)
     const filterCountryListBySearchTerm: CountryType[] = contryList.filter(
       (c) => {
-        console.log(c.name.toUpperCase())
         return c.name.toLowerCase().includes(searchTerm.toLowerCase())
       }
     )
     setList(filterCountryListBySearchTerm)
   }
+
+  const isNullOrWhitespace = (input: string): boolean => {
+    if (typeof input === 'undefined' || input == null) return true
+    return input.replace(/\s/g, '').length < 1
+  }
+
+  React.useLayoutEffect(() => {
+    if (isNullOrWhitespace(searchTerm)) {
+      setList(contryList)
+      console.log(list)
+    }
+  }, [contryList, list, searchTerm])
 
   return (
     <div className={classes.root}>
