@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { IconButton, Divider, List, Drawer } from '@material-ui/core'
 import clsx from 'clsx'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
@@ -50,12 +50,13 @@ const Cart: React.FC<ICartProps> = () => {
   const [open, setOpen] = React.useState(false)
   const theme = useTheme()
   const dispatchInCart = useDispatch()
-
   const inCart = useSelector((state: AppState) => state.list.inCart)
+  useEffect(() => {
+    dispatchInCart(loadingInCartDAta())
+  }, [dispatchInCart])
 
   const handleDrawerOpen = () => {
     setOpen(true)
-    dispatchInCart(loadingInCartDAta())
   }
   const handleDrawerClose = () => {
     setOpen(false)
